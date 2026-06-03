@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Prediction Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d3436;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .prediction-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .prediction-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .main-title {
+            font-weight: 700;
+            color: #0984e3;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-control-custom {
+            border-radius: 30px;
+            padding: 25px 20px;
+            border: 2px solid #dfe6e9;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-custom:focus {
+            border-color: #0984e3;
+            box-shadow: 0 0 10px rgba(9, 132, 227, 0.2);
+            outline: none;
+        }
+
+        .btn-predict {
+            background: linear-gradient(135deg, #00cec9, #00b894);
+            border: none;
+            border-radius: 30px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-predict:hover {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .result-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid #0984e3;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+
+        .footer-info {
+            margin-top: 35px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 2px;
+        }
+
+        .author-title {
+            font-size: 13px;
+            color: #b2bec3;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="prediction-card text-center">
+    <h2 class="main-title">Salary Prediction</h2>
+
+    <form action="/predict" method="POST" class="mb-4">
+        <div class="form-group">
+            <input type="number" step="any" name="Experience" class="form-control form-control-custom text-center" placeholder="Years of Experience" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block btn-predict text-white">Predict Salary</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result-box animate__animated animate__fadeIn">
+        <span class="text-muted d-block font-weight-normal" style="font-size: 14px;">Estimated Salary</span>
+        <span style="font-size: 22px; color: #0984e3;">₹{{ "{:,.2f}".format(prediction_text) }}</span>
+    </div>
+    {% endif %}
+
+    <div class="footer-info">
+        <p class="author-name">Janardhan</p>
+        <p class="author-title">Data Scientist & NLP Engineer</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
